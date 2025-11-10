@@ -46,4 +46,5 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "ID_PERMISSAO")
     )
     private List<Permissao> permissoes;
+
 }
