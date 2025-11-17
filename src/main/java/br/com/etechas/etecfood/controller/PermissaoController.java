@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/usuario")
 // Classe responsável por gerenciar as requisições relacionadas aos usuários.
-public class UsuarioController {
+public class PermissaoController {
+
     @Autowired
-// Repositório usado para operações de CRUD com a entidade Usuario
+    // Repositório usado para operações de CRUD com a entidade Usuario
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public List<Usuario> listar(){
-        return UsuarioRepository.findAll();
-    }
+            return UsuarioRepository.findAll();
+        }
 
     @GetMapping("/{id}")
     public Usuario buscarPorId(@PathVariable Long id){
@@ -38,8 +38,8 @@ public class UsuarioController {
 
     @PostMapping
     public void cadastrar(@RequestBody Usuario usuario){
-        UsuarioRepository.save(usuario);
-    }
+            UsuarioRepository.save(usuario);
+        }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
