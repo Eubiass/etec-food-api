@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.etechas.etecfood.repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -29,4 +33,17 @@ public Usuario buscarPorId(@PathVariable Long id){
     if(usuario.isPresent())
         return usuario.get();
     return null;
+}
+
+@PostMapping
+public void cadastrar(@RequestBody Usuario usuario){
+    UsuarioRepository.save(usuario);
+}
+
+@DeleteMapping("/{id}")
+public void deletar(@PathVariable Long id){
+    var usuario = UsuarioRepository.findById(id);
+    if(usuario.isPresent())
+        UsuarioRepository.delete(usuario.get());
+}
 }
