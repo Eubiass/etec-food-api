@@ -30,5 +30,11 @@ public class PermissaoController {
             return permissaoRepository.findAll();
         }
 
-
+    @GetMapping("/{id}")
+    public Permissao buscarPorId(@PathVariable Long id){
+        var permissao = permissaoRepository.findById(id);
+        if(permissao.isPresent())
+            return permissao.get();
+        return null;
+    }
 }
