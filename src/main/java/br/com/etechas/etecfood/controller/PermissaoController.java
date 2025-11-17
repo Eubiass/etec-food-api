@@ -4,15 +4,11 @@ import br.com.etechas.etecfood.entity.Permissao;
 import br.com.etechas.etecfood.entity.Usuario;
 import br.com.etechas.etecfood.repository.PermissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import br.com.etechas.etecfood.repository.UsuarioRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -48,6 +44,15 @@ public class PermissaoController {
         var permissao = permissaoRepository.findById(id);
         if(permissao.isPresent())
             permissaoRepository.delete(permissao.get());
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Permissao> atualizar(@PathVariable Integer id){
+        var permissao = permissaoRepository.findById(id);
+        if(permissao.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(Permissao);
+        }
+        return ResponseEntity.notFound().build();
     }
 }
 
