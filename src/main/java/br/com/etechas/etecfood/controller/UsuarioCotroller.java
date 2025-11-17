@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.etechas.etecfood.repository.UsuarioRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 @RestController
 @RequestMapping("/usuario")
@@ -17,4 +21,12 @@ public class UsuarioController {
 @GetMapping
 public List<Usuario> listar(){
     return UsuarioRepository.findAll();
+}
+
+@GetMapping("/{id}")
+public Usuario buscarPorId(@PathVariable Long id){
+    var usuario = UsuarioRepository.findById(id);
+    if(usuario.isPresent())
+        return usuario.get();
+    return null;
 }
