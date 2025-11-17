@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuario")
 // Classe responsável por gerenciar as requisições relacionadas aos usuários.
-
 public class UsuarioController {
 
     @Autowired
@@ -19,7 +18,7 @@ public class UsuarioController {
 
     @GetMapping
     public List<Usuario> listar(){
-        return UsuarioRepository.findAll();
+        return usuarioRepository.findAll();
     }
 
     @GetMapping("/{id}")
