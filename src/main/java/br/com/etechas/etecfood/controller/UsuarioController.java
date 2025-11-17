@@ -14,7 +14,7 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    // Repositório usado para operações de CRUD com a entidade Usuario
+    // Repositório usado para operações de CRUD com a entidade   Usuario
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
