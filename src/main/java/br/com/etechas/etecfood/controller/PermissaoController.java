@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 
 
 @RestController
@@ -21,29 +22,29 @@ public class UsuarioController {
     @Autowired
 // Repositório usado para operações de CRUD com a entidade Usuario
     private UsuarioRepository usuarioRepository;
-}
-@GetMapping
-public List<Usuario> listar(){
-    return UsuarioRepository.findAll();
-}
 
-@GetMapping("/{id}")
-public Usuario buscarPorId(@PathVariable Long id){
-    var usuario = UsuarioRepository.findById(id);
-    if(usuario.isPresent())
-        return usuario.get();
-    return null;
-}
+    @GetMapping
+    public List<Usuario> listar(){
+        return UsuarioRepository.findAll();
+    }
 
-@PostMapping
-public void cadastrar(@RequestBody Usuario usuario){
-    UsuarioRepository.save(usuario);
-}
+    @GetMapping("/{id}")
+    public Usuario buscarPorId(@PathVariable Long id){
+        var usuario = UsuarioRepository.findById(id);
+        if(usuario.isPresent())
+            return usuario.get();
+        return null;
+    }
 
-@DeleteMapping("/{id}")
-public void deletar(@PathVariable Long id){
-    var usuario = UsuarioRepository.findById(id);
-    if(usuario.isPresent())
-        UsuarioRepository.delete(usuario.get());
-}
+    @PostMapping
+    public void cadastrar(@RequestBody Usuario usuario){
+        UsuarioRepository.save(usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        var usuario = UsuarioRepository.findById(id);
+        if(usuario.isPresent())
+            UsuarioRepository.delete(usuario.get());
+    }
 }
